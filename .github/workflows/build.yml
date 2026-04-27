@@ -11,7 +11,7 @@ jobs:
 
       - name: Build
         run: |
-          xcodebuild clean archive -scheme "ReflectiveClothes" -archivePath ./output.xcarchive CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          xcodebuild clean archive -project "ReflectiveClothes.xcodeproj" -scheme "ReflectiveClothes" -archivePath ./output.xcarchive CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
       - name: Export IPA
         run: |
