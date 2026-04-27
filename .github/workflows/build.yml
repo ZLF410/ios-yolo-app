@@ -11,11 +11,17 @@ jobs:
 
       - name: Build
         run: |
-          xcodebuild clean archive -project "ReflectiveClothes.xcodeproj" -scheme "ReflectiveClothes" -archivePath ./output.xcarchive CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
+          xcodebuild clean archive \
+            -project "ReflectiveClothes.xcodeproj" \
+            -scheme "ReflectiveClothes" \
+            -archivePath ./output.xcarchive \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGN_IDENTITY=""
 
       - name: Export IPA
         run: |
-          mkdir Payload
+          mkdir -p Payload
           cp -r ./output.xcarchive/Products/Applications/ReflectiveClothes.app Payload/
           zip -r ReflectiveClothes.ipa Payload
 
