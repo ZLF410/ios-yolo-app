@@ -11,15 +11,15 @@ jobs:
 
       - name: Build
         run: |
-          xcodebuild archive -project "ReflectiveClothes.xcodeproj" -scheme "ReflectiveClothes" -archivePath output APPLICATION_EXTENSION_BUILD_ALLOWED=NO CODE_SIGNING_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          xcodebuild clean archive -scheme "ReflectiveClothes" -archivePath ./output.xcarchive CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
 
-      - name: Make IPA
+      - name: Export IPA
         run: |
           mkdir Payload
-          cp -r output.xcarchive/Products/Applications/ReflectiveClothes.app Payload/
+          cp -r ./output.xcarchive/Products/Applications/ReflectiveClothes.app Payload/
           zip -r ReflectiveClothes.ipa Payload
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MyIPA
+          name: ReflectiveClothesIPA
           path: "ReflectiveClothes.ipa"
